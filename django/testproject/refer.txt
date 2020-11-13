@@ -1,0 +1,22 @@
+#create component command
+ng g component my-new-component
+
+
+
+$ ng add @angular/material
+---------------------------------------
+
+#angular model datatable
+https://www.itsolutionstuff.com/post/angular-9-8-datatable-example-with-pagination-sorting-filteringexample.html
+
+
+https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial
+
+
+
+<button mdbBtn color="info" id='btn' class="btn btn-secondary" (click)="delete(item.id)">Delete</button>
+
+
+
+#doubts
+#share data from one component to another component

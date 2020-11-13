@@ -1,0 +1,177 @@
+
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark purple lighten-1" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">Dashboard</a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+    
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link waves-light" mdbWavesEffect href='/friendslist'>Friends<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      
+      
+      <!-- Links -->
+      <a gtm-id="Notifications" class="nav-link waves-effect" alt="Notifications" class="navbarNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span id="navbarNotificationCounter" class="badge rounded red z-depth-1" alt="Notifications" [hidden]="acceptlist.length==0">{{acceptlist.length}}</span>
+        <i class="fas fa-bell fa-lg" alt="Notifications"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" id="navbarNotificationContent" aria-labelledby="navbarDropdownMenuLink" style="width: 250px;">
+        <a gtm-id="Notifications" class="dropdown-item text-wrap" >
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor='let user of acceptlist'>
+                    <img src="{{user.userimage}}" alt="image" class="rounded-circle search-img" />&nbsp;
+                    <span>{{user.username}}</span>
+                    <button mdbBtn type="button" color="info" rounded="true" mdbWavesEffect (click)="friendAccepts(user.userid)" class="btn-sm btn-accept">Accept</button>
+                </li>
+            </ul>
+        </a>
+    </div>
+    
+      <!-- <i class="fas fa-bell fa-lg" (click)="flagcheck()" [ngStyle]="{'color':acceptlistFlag === true ? '' : '#61ff00' }"></i>
+      <div class="search_card card" *ngIf="acceptlistFlag" style="margin-left: 80%;">
+        <div class="card-body">
+            
+        </div>
+    </div> -->
+      <form class="form-inline waves-light">
+        <div class="md-form my-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search"  (change)="search($event)">
+        </div>
+        <div class="search_card card" *ngIf="userslist">
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor='let user of userslist'>
+                        <img src="{{user.userimage}}" alt="image" class="rounded-circle search-img" />&nbsp;
+                        <span>{{user.username}}</span>
+                        <button mdbBtn type="button" color="info" rounded="true" mdbWavesEffect (click)="friendRequest(user.user_id)">Request</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </form>
+    
+      <ul class="navbar-nav ml-auto nav-flex-icons">    
+        <li class="nav-item avatar dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <img src="{{userdata[0].profile_image}}" alt="" class="img-fluid rounded-circle z-depth-0"></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="/myaccount">My account</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          </div>
+        </li>
+      </ul>
+
+    </links>
+    
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--/.Navbar-->
+
+<!-- Share modal pop-up -->
+
+
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">Share To
+        </p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">×</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center" *ngFor="let share of sharefriends" >
+          <img class="rounded-circle" src='{{share.userimage}}' width="30">{{share.username}}<mdb-icon fas icon="paper-plane" class="ml-1"></mdb-icon>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Share modal pop-up -->
+
+
+<div class="container mt-5">
+  
+  <form>
+      <div class="file-field md-form">
+          <div mdbBtn floating="true" size="md" color="amber" mdbWavesEffect>
+            <mdb-icon fas icon="cloud-upload-alt" aria-hidden="true"></mdb-icon>
+            <input type="file" id="file" class="form-control" formControlName="file" (change)="selectFile($event)" multiple>
+          </div>
+        <div class="file-path-wrapper mt-3">
+          <input name="test" class="file-path" type="text" placeholder="write your text" [(ngModel)]="usertext">
+        </div>
+      </div>
+      <button mdbBtn type="button" color="amber" class="waves-light" (click)="postdata()" mdbWavesEffect>Post</button>
+</form>
+
+
+    <div class="d-flex justify-content-center row" *ngFor="let post of posts">
+        <div class="col-md-6">
+          
+            <div class="d-flex flex-column comment-section">
+                <div class="bg-white p-2">
+                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src={{post.user_img}} width="40">
+                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"></span><span class="date text-black-50"><strong>{{post.user}}</strong><br> {{post.create_date}}</span></div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="comment-text">
+                            <img src={{post.post_image}} alt="thumbnail" class="img-thumbnail"
+                            style="width: 400px"><br>
+                            {{post.discription}}</p>
+                    </div>
+                </div>
+                <div class="bg-white" >
+                    <div class="d-flex flex-row fs-12"  >
+                        <div class="like p-2 cursor" style="color: #9400D3; ">
+                            <span class="ml-1" (click)=userliked(post.id)>
+                                <span *ngIf=" likedcount && LikeddivID===post.id "></span>
+                                <i *ngIf="post.user_like===true" class="fa fa-heart"></i>
+                                <i *ngIf="post.user_like===false" class="fa fa-heart-o"></i>
+                                <!-- <fa-icon [icon]="faHeart"></fa-icon> -->
+                            </span><span style="margin-left: 5px;">{{post.like_count}}</span>
+                        </div>
+                        <div class="like p-2 cursor" style="color:#9400D3; "><i class="fa fa-commenting-o"></i><span class="ml-1" (click)="divopen(post.id)" >Comment</span> {{post.comment_count}}</div>
+                        <div class="like p-2 cursor" style="color: #9400D3; ">
+                          <i class="fa fa-share"></i>
+                          <span class="ml-1" data-toggle="modal" data-target="#basicExample"
+                          (click)="frame.show()" mdbWavesEffect>Share</span></div>
+                    </div>    
+                </div>
+                <div *ngIf=" isComment && divID===post.id " class="commentsContainer" >
+                    <div class="bg-light p-2">
+                        <div class="d-flex flex-row align-items-start" >
+                            <img class="rounded-circle" src='{{post.user_img}}' width="30">
+                            <textarea class="form-control ml-1 shadow-none textarea" id="usercomment" [(ngModel)]="usercomment"></textarea>
+                        </div>
+                        <div class="mt-2 text-right" ><button class="btn btn-primary btn-sm shadow-none" type="submit" (click)="usrcomment(usercomment,post.id)">Post comment</button>
+                    </div>
+                <div class="bg-light p-2"   *ngFor="let comment of getcomments" >
+                    <div class="d-flex flex-row align-items-start" >
+                        <img class="rounded-circle" src="{{comment.coment_user_img}}" width="30">
+                        <textarea class="form-control ml-1 shadow-none textarea" [(ngModel)]="comment.comments" ></textarea>
+                    </div>
+                    <div class="mt-2 text-right" ><button class="btn btn-primary btn-sm shadow-none" type="button" (click)="usrcomment(comment,post.id)">Edit comment</button>
+                      
+                    </div>
+                </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

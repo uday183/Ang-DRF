@@ -1,0 +1,25 @@
+<div class="container">
+
+    <!-- Default form register -->
+    <form  class="text-center border border-light p-5" id="register" >
+  
+        <p class="h4 mb-4">Register</p>
+      
+        <!-- Username -->
+        <input type="username" id="UserFormUsername" class="form-control mb-4"
+        placeholder="User Name" [ngModelOptions]="{standalone: true}"  [(ngModel)]="registerForm.username">
+            
+        <!-- Email -->
+        <input type="email" id="EmailFormPassword" class="form-control mb-4"
+        placeholder="Email" [ngModelOptions]="{standalone: true}"  [(ngModel)]="registerForm.email" >
+        
+        <!-- Password -->
+        <input type="password" id="PasswordFormPassword" class="form-control mb-4"
+        placeholder="Password" [ngModelOptions]="{standalone: true}"  [(ngModel)]="registerForm.password" >
+      
+        <!-- Sign in button -->
+        <button mdbBtn color="info" block="true"  type="submit" (click)="register()" >Sign in</button>
+        
+      </form>
+      <!-- Default form register -->
+    </div>

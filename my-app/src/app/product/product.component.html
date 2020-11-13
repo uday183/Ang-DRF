@@ -1,0 +1,110 @@
+<html>
+  
+  <body>
+ <!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark black lighten-1" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect href="/news">News</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+  
+      <li class="nav-item avatar dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <img src={{image}} alt="" class="img-fluid rounded-circle z-depth-0"></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="logouts()">Log out</a>
+        </div>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+    
+ <!-- Modal -->
+    <div>
+     <!-- Button trigger modal -->
+      <button mdbBtn color="info" class="btn btn-secondary" id='btn' data-toggle="modal" data-target="#basicExampleModal" (click)="clear()">Create
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" >
+
+                <!-- Username -->
+                <input type="text"  class="form-control mb-4"
+                placeholder="User Name"  [(ngModel)]="username"  >
+              
+                <!-- City -->
+                <input type="text"  class="form-control mb-4"
+                placeholder="City"  [(ngModel)]="city"   >
+
+                <!-- Country -->
+                <input type="text"  class="form-control mb-4"
+                placeholder="Country"   [(ngModel)]="country" >
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary" type="submit"  (click)="create()" >Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+ <!-- Modal -->
+    <div>
+      <mat-progress-spinner class="table-spinner" mode="indeterminate" *ngIf = "spinnerFlag"  ></mat-progress-spinner>
+          
+      <table *ngIf="showContent" datatable [dtOptions]="dtOptions" class="table table-striped table-bordered table-sm row-border hover" >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of product">
+            
+            <td>{{ item.name }}</td>
+            <td>{{ item.city }}</td>
+            <td>{{ item.country }}</td>
+            
+            <td><button mdbBtn color="info" id='btn' class="btn btn-secondary" data-toggle="modal" data-target="#basicExampleModal" (click)="edit(item)" >Edit</button>
+              <button mdbBtn color="info" id='btn' class="btn btn-secondary" (click)="delete(item.id)">Delete</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </body>
+</html>

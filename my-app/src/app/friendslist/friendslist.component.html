@@ -1,0 +1,35 @@
+<section class="text-center my-4">
+    <!-- Grid row -->
+    <div class="row" >
+        <div class="alert alert-fill-warning alert-message" *ngIf="friends.length === 0">
+            <div class="alert alert-primary" role="alert">
+                Your's Friends List Is Empty
+              </div>
+        </div>
+        <!--Grid column-->
+        <div class="col-lg-2 col-md-12 mb-lg-0 mb-4" *ngFor="let friend of friends" >
+            <!--Card-->
+            <mdb-card class="testimonial-card">
+            <!--Background color-->
+            <div class="card-up info-color"></div>
+            <!--Avatar-->
+            <div class="avatar mx-auto white">
+                <mdb-card-img src="{{friend.userimage}}"  class="rounded-circle"></mdb-card-img>
+            </div>
+            <mdb-card-body>
+                <!--Name-->
+                <h4 class="font-weight-bold mb-4"><strong>{{friend.username | uppercase }}</strong></h4>
+                <p class="dark-grey-text mt-4">
+                    <mdb-icon fas icon="quote-left" class="pr-2"></mdb-icon>{{friend.city}}</p>
+                <hr>
+                <i class="fas fa-user-times"></i> <h5>UnFallow</h5>
+            </mdb-card-body>
+            
+            </mdb-card>
+            <!--Card-->
+        </div>
+        <!--Grid column-->
+    </div>
+    <!-- Grid row -->
+  </section>
+ 

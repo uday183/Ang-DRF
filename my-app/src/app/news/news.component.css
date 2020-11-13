@@ -1,0 +1,68 @@
+body {
+    background: #eee
+}
+
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #007bff
+}
+
+.cursor:hover {
+    color: blue
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.textarea {
+    resize: none
+}
+
+.rounded-circle {
+    margin-top: 10px;
+}
+
+.commentsContainer{
+    width: 75%;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.search_card{
+    position: absolute;
+    z-index: 10;
+    top: 60px;
+    width: 230px;
+}
+
+.search-img{
+    width: 40px;
+    height: 40px;
+}
+
+.btn-accept{
+    position: absolute;
+    left: 60px;
+    top: 40px;
+    padding: 5px !important;
+}
+
+.navbarNotification{
+    margin-left: 1386px
+}

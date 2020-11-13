@@ -1,0 +1,78 @@
+h1{ font-size: 40px;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th {
+    height: 50px;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .topnav-right {
+    float: right;
+  }
+
+
+  div {
+    padding: 10px 0px 0px 5px;
+  }
+.moda-body>form{
+  padding: 20px;
+}
+
+
+.btn-block {
+  display: block;
+  width: 10%;
+}
+
+.form-control {
+  display: block;
+  width: 98%;
+}
+
+.table-spinner {
+  z-index: 10;
+  position: absolute;
+  margin: 0 auto;
+  margin-left: 35%;
+  margin-top: 10%;
+}
+
+.img-fluid {
+  max-width: 44%;
+  height: auto;
+}
